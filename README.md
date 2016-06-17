@@ -302,8 +302,8 @@ If you have installed TraceView and this package, you can run the sample “web 
 
 A web server will run on port 8899. It doesn’t do much, except wait a bit and echo back your URL path:
 
-    $ curl http://localhost:8899/hello
-    Slow request... Path: /hello
+    $ curl http://localhost:8899/slow
+    Slow request... Path: /slow
 
 You should see these requests appear on your TraceView dashboard.
 
