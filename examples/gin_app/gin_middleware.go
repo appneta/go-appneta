@@ -46,3 +46,12 @@ func (w *ginResponseWriter) WriteHeaderNow() {
 		w.WriteHeader(w.StatusCode)
 	}
 }
+func (w *ginResponseWriter) Write(p []byte) (n int, err error) {
+	if !w.WroteHeader {
+		// gin writer is a ref to an internal http response writer maintained by gin
+		// gin updates the status code of the response on this writer
+		w.StatusCode = w.ginWriter.Status()
+		w.WriteHeader(w.ginWriter.Status())
+	}
+	return w.Writer.Write(p)
+}
